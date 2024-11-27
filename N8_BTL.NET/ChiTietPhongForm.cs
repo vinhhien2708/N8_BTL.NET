@@ -65,9 +65,8 @@ namespace KaraokeManager
                         reader.Close();
                         // Tạo hóa đơn mới
                         thoiGianBatDau = DateTime.Now;
-                        string queryInsert = @"INSERT INTO hoa_don (ma_phong, thoi_gian_bat_dau, trang_thai) 
-                                            VALUES (@MaPhong, @ThoiGianBatDau, 'Đang phục vụ');
-                                            SELECT SCOPE_IDENTITY();";
+                        string queryInsert = @"INSERT INTO hoa_don (ma_phong, thoi_gian_bat_dau, thoi_gian_ket_thuc, trang_thai)
+                      VALUES (@maPhong, @thoiGianBatDau, @thoiGianBatDau, 'Đang phục vụ')";
                         SqlCommand cmdInsert = new SqlCommand(queryInsert, conn);
                         cmdInsert.Parameters.AddWithValue("@MaPhong", maPhong);
                         cmdInsert.Parameters.AddWithValue("@ThoiGianBatDau", thoiGianBatDau);
@@ -169,7 +168,7 @@ namespace KaraokeManager
                     cmd.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
                     cmd.Parameters.AddWithValue("@MaSanPham", cboSanPham.SelectedValue);
                     cmd.Parameters.AddWithValue("@SoLuong", numSoLuong.Value);
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery(); 
                 }
                 LoadChiTietHoaDon();
             }
@@ -228,6 +227,11 @@ namespace KaraokeManager
                 }
                 this.Close();
             }
+        }
+
+        private void lblPhong_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
